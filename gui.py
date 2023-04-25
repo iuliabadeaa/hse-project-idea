@@ -24,12 +24,12 @@ label.pack()
 label.place(x=270,y=200)
 
 def andgate():
-    x=bool(entry1.get())
-    y=bool(entry2.get())
+    x=int(entry1.get())
+    y=int(entry2.get())
     output=x and y
     description_label=Label(root,text="Output: ")
     description_label.place(x=500,y=250)
-    and_label=Label(root,text=int(output))
+    and_label=Label(root,text=bool(output))
     and_label.place(x=550,y=250)
 
     
