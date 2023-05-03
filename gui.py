@@ -339,6 +339,56 @@ def open_xnor_gate_simulator():
 
     mainloop()
 
+def open_not_gate_simulator():
+    menu.destroy()
+    root=Tk()
+    root.title("NOT GATE")
+    root.geometry("600x600")
+
+    description=Label(root,text="NOT gate requires one input: ")
+    description.place(x=100,y=100)
+    input1=Label(root,text="A")
+    input1.place(x=200,y=255)
+    entry1=Entry(root)
+    entry1.place(x=220,y=255)
+    img = ImageTk.PhotoImage(Image.open("notgate.png"))
+    label = Label(root, image = img)
+    label.pack()
+    label.place(x=270,y=200)
+
+    def andgate():
+        x=int(entry1.get())
+        if (x==0 or x==1):
+            output=not(x)
+            description_label=Label(root,text="Output: ")
+            description_label.place(x=500,y=255)
+            and_label=Label(root,text=bool(output))
+            and_label.place(x=550,y=255)
+
+        else:
+            root.destroy()
+            error_root=Tk()
+            error_root.title("Error!")
+            error_label=Label(error_root,text="Input must be 0 or 1!")
+            error_label.configure(font="40,red")
+            error_label.place(x=30,y=80)
+            mainloop() 
+            
+
+    def reset():
+        entry1.delete(0,END)
+
+    resetbutton=Button(root,text="RESET",command=reset)
+    resetbutton.place(x=400,y=400)
+        
+
+    runbutton=Button(root,text="RUN",command=andgate)
+    runbutton.place(x=300,y=400)
+
+    mainloop()
+
+def exit_function():
+    menu.destroy()
 
 menu=Tk()
 menu.title("MENU")
@@ -357,5 +407,9 @@ nor_button=Button(menu,text="NOR GATE",command=open_nor_gate_simulator)
 nor_button.place(x=200,y=140)
 xnor_button=Button(menu,text="XNOR GATE",command=open_xnor_gate_simulator)
 xnor_button.place(x=300,y=140)
+not_button=Button(menu,text="NOT GATE",command=open_not_gate_simulator)
+not_button.place(x=100,y=180)
+exit_button=Button(menu,text="EXIT",command=exit_function)
+exit_button.place(x=200,y=180)
 
 mainloop()
